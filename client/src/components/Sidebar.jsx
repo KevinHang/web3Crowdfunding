@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 import { logo, sun } from '../assets';
 import { navlinks } from '../constants';
+
+const notify = () => toast('Hello Darkness!',
+                        {
+                          icon: '👏',
+                          style: {
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#fff',
+                          },
+                        }
+                        );
 
 const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
   <div className={`w-[48px] h-[48px] rounded-[10px] ${isActive && isActive === name && 'bg-[#2c2f32]'} flex justify-center items-center ${!disabled && 'cursor-pointer'} ${styles}`} onClick={handleClick}>
@@ -41,7 +53,8 @@ const Sidebar = () => {
           ))}
         </div>
 
-        <Icon styles="bg-[#1c1c24] shadow-secondary" imgUrl={sun} />
+        <Icon styles="bg-[#1c1c24] shadow-secondary" imgUrl={sun} handleClick={notify} />
+        <Toaster />
       </div>
     </div>
   )
